@@ -33,11 +33,20 @@ for each in data:
 #bar=OrderedDict(sorted(d.items(), key=lambda x: x[1]))
 bar=sorted(d.items(), key=lambda x: x[1],reverse=True)
 print(type(bar))
-top=(bar[:50])
-for i in top:
-    if i[0] not in [u' ',u',',u'"',u'.',u'?']+stopwords:
-        print i[0],i[1]
+top=(bar[:10])
 
+top_filt=[]
+for x,y in top:
+    if x not in [u' ',u',',u'"',u'.',u'?']+stopwords:
+        print x,y
+        top_filt.append(x)
+print top_filt
+hotwords=[i.encode('utf8')+'\n' for i in top_filt]
+fout=open('hotwords.txt','w')
+
+fout.writelines(hotwords)
+
+fout.close()
 #print json.dumps(bar[:10],indent=4)
 '''                
 for k in d:
