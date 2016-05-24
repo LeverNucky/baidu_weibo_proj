@@ -4,8 +4,8 @@ import json
 from collections import OrderedDict
 
 
-path="H:/SJTU/data/baidu/data/dongfangzhixing/dongfangzhixing_query_sample"
-text_path="H:/SJTU/data/baidu/data/dongfangzhixing/text_data.txt"
+path="H:/SJTU/data/baidu/data/dongfangzhixing/dongfangzhixing_weibo_sample"
+
 with open(path,'rb') as f:
     data=f.readlines()
 
@@ -23,7 +23,7 @@ jieba.load_userdict("dict/event.txt")
 #print type(data),data[0]
 for each in data:
     contents=json.loads(each)
-    result=jieba.lcut(contents['text'])
+    result=jieba.lcut(contents['text'])+jieba.lcut(contents['rt_text'])
     for word in result:
         if word:
             if word in d:
@@ -33,16 +33,16 @@ for each in data:
 #bar=OrderedDict(sorted(d.items(), key=lambda x: x[1]))
 bar=sorted(d.items(), key=lambda x: x[1],reverse=True)
 print(type(bar))
-top=(bar[:10])
+top=(bar[:40])
 
 top_filt=[]
 for x,y in top:
-    if x not in [u' ',u',',u'"',u'.',u'?']+stopwords:
+    if x not in [u' ']+stopwords:
         print x,y
         top_filt.append(x)
 print top_filt
 hotwords=[i.encode('utf8')+'\n' for i in top_filt]
-fout=open('hotwords.txt','w')
+fout=open('hotwords_weibo.txt','w')
 
 fout.writelines(hotwords)
 
