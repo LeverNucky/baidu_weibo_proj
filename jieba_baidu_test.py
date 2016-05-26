@@ -14,7 +14,6 @@ d=OrderedDict()
 #jieba.analyse.set_stop_words("dict/stopwords.txt")
 
 stopwords=[line.strip() for line in open('dict/stopwords.txt','rb').readlines()]
-
 for i in range(len(stopwords)):
     stopwords[i]=stopwords[i].decode('utf8')
     
