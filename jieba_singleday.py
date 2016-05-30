@@ -1,5 +1,6 @@
 import jieba
 import sqlite3
+from rbo import score
 from collections import OrderedDict
 
 db_path="H:/SJTU/data/baidu/data/dongfangzhixing/baidu_sample.db"
@@ -12,8 +13,9 @@ date=range(20150612,20150631)+[20150701]
 count=[0]*len(date)
 
 d=[OrderedDict() for i in range(len(date))]
-bar=[[]]*len(date)
-top=[[]]*len(date)
+bar=[[] for i in range(len(date))]
+top=[[] for i in range(len(date))]
+top_filt=[[] for i in range(len(date))]
 
 stopwords=[line.strip() for line in open('dict/stopwords.txt','rb').readlines()]
 for i in range(len(stopwords)):
@@ -52,8 +54,12 @@ for i in range(len(date)):
             break
         if x not in [u' ']+stopwords:
             print x,y
+            top_filt[i].append(x)
             cur+=1
-    
+print top_filt[0]
+print top_filt[1]
+for i in range(len(date)):
+    print score(top_filt[0],top_filt[i])
     
 c.close()
 db.commit()
