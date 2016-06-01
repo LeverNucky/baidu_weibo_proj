@@ -58,8 +58,10 @@ for i in range(len(date)):
             cur+=1
 print top_filt[0]
 print top_filt[1]
+
+test=[u'\u4e1c\u65b9\u4e4b\u661f', u'\u6c89\u8239', u'\u9047\u96be', u'\u73b0\u573a', u'\u4e8b\u6545', u'\u4e00\u4f4d', u'\u8bb0\u8005', u'\u4e00\u8d77', u'\u6b64\u523b', u'\u4eba\u5458', u'cn', u'http', u't', u'\u9ed8\u54c0', u'\u5934\u4e03', u'\u65f6', u'\u9047\u96be\u8005', u'\u957f\u6c5f', u'\u4e2d', u'\u8f6c\u53d1']
 for i in range(len(date)):
-    print score(top_filt[0],top_filt[i])
+    print score(test,top_filt[i])
     
 c.close()
 db.commit()
