@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+    title: {
+        text: 'Comparison',
+        subtext: 'Baidu vs Weibo',
+        x: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            animation: false
+        }
+    },
+    legend: {
+        data:['Baidu','Weibo'],
+        x: 'left'
+    },
+    dataZoom: [
+        {
+            show: true,
+            realtime: true,
+            start: 30,
+            end: 70,
+            xAxisIndex: [0, 1]
+        },
+        {
+            type: 'inside',
+            realtime: true,
+            start: 30,
+            end: 70,
+            xAxisIndex: [0, 1]
+        }
+    ],
+    grid: [{
+        left: 50,
+        right: 50,
+        height: '35%'
+    }, {
+        left: 50,
+        right: 50,
+        top: '55%',
+        height: '35%'
+    }],
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: [20150612, 20150613, 20150614, 20150615, 20150616, 20150617, 20150618, 20150619, 20150620, 20150621, 20150622, 20150623, 20150624, 20150625, 20150626, 20150627, 20150628, 20150629, 20150630, 20150701]
+        },
+        {
+            gridIndex: 1,
+            type : 'category',
+            boundaryGap : false,
+            axisLine: {onZero: true},
+            data: [20150612, 20150613, 20150614, 20150615, 20150616, 20150617, 20150618, 20150619, 20150620, 20150621, 20150622, 20150623, 20150624, 20150625, 20150626, 20150627, 20150628, 20150629, 20150630, 20150701],
+            position: 'top'
+        }
+    ],
+    yAxis : [
+        {
+            name : 'Popularity',
+            type : 'value',
+
+        },
+        {
+            gridIndex: 1,
+            type : 'value',
+            inverse: true
+        }
+    ],
+    series : [
+        {
+            name:'Baidu',
+            type:'line',
+            symbolSize: 8,
+            hoverAnimation: false,
+            data:[0.27851556451214693, 0.2726617628808181, 1.0, 0.9656555701004752, 0.16703880141416186, 0.13375455904704764, 0.12994796812063666, 0.11149288132024712, 0.06444399174403902, 0.06636707295581604, 0.0704991950133266, 0.08372881655109826, 0.08169880080777704, 0.06965402365275046, 0.05682151082927082, 0.04676686013331976, 0.04756378481239998, 0.04912360408280828, 0.04753587822781613, 0.04056257046624077]
+        },
+        
+        {
+            name:'Weibo',
+            type:'line',
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            symbolSize: 8,
+            hoverAnimation: false,
+            data: [0.4706247362773626, 0.47587944437863994, 1.0, 0.311596878685733, 0.28928069354006947, 0.1155220082216872, 0.20409326004638792, 0.13083857699075785, 0.07593641174368475, 0.08607240540599001, 0.0920930891045994, 0.09132136935066992, 0.08832234985680963, 0.09270863459657719, 0.12408587831280524, 0.07724705864036109, 0.08873301208922617, 0.10876308774259094, 0.1297404894468955, 0.14602262826148954]
+        }
+    ]
+};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
